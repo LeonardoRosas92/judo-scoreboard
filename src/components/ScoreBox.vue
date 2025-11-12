@@ -5,7 +5,7 @@
       <div v-for="type in ['ippon', 'waza', 'yuko', 'shido']" :key="type"
         class="flex flex-col items-center justify-center rounded-xl transition cursor-pointer select-none"
         @click="handleTap(side, type)" @contextmenu.prevent="store.decrementScore(side, type)"
-        @touchstart.passive="startHold(side, type)" @touchend.passive="cancelHold" @mousedown="startHold(side, type)"
+        @touchstart="startHold(side, type)" @touchend="cancelHold" @mousedown="startHold(side, type)"
         @mouseup="cancelHold" @mouseleave="cancelHold">
         <!-- Nombre de la marcación -->
         <span class="text-sm sm:text-xl font-extrabold uppercase mb-2"
@@ -30,7 +30,13 @@
 <script setup>
 import { useScoreboardStore } from '@/stores/scoreboard'
 const store = useScoreboardStore()
-defineProps({ side: String })
+
+const props = defineProps({
+  side: {
+    type: String,
+    required: true,
+  },
+})
 
 // ============================
 // 🎯 Control universal táctil
