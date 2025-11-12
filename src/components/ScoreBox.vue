@@ -29,14 +29,16 @@
 
 <script setup>
 import { useScoreboardStore } from '@/stores/scoreboard'
-const store = useScoreboardStore()
 
-const props = defineProps({
+// ✅ Sin warning ESLint
+const { side } = defineProps({
   side: {
     type: String,
     required: true,
   },
 })
+
+const store = useScoreboardStore()
 
 // ============================
 // 🎯 Control universal táctil
