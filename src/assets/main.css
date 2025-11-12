@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body.golden-score {
+  background-color: #ffcc00 !important;
+  transition: background-color 0.5s ease;
+}
