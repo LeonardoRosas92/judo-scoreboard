@@ -5,7 +5,7 @@
 
     <!-- Competidores + Timers -->
     <section
-      class="flex flex-col md:flex-col lg:flex-col xl:flex-col 2xl:flex-col items-center justify-center flex-1 gap-4">
+      class="flex flex-col md:flex-col lg:flex-col xl:flex-col 2xl:flex-col items-center justify-center flex-1 gap-3">
       <ScoreRow class="w-full flex-1" />
       <TimerRow class="w-full flex-1" />
     </section>

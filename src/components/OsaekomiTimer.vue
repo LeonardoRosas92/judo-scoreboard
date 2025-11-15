@@ -9,18 +9,18 @@
         store.osaekomi[side].running ? ' text-green-500' : ''
       ]">
       <!-- Título -->
-      <span class="text-xl sm:text-2xl font-semibold mb-1">
+      <span class="text-xl sm:text-2xl xl:text-4xl font-semibold mb-1">
         Osaekomi
       </span>
 
       <!-- Timer -->
-      <span class="text-[clamp(1rem,6vh,10rem)] md:text-[clamp(5rem,8vh,12rem)] font-extrabold leading-none">
+      <span class="text-[clamp(1rem,6vh,10rem)] md:text-[clamp(3rem,8vh,12rem)] font-extrabold leading-none">
         {{ formattedOsaekomi }}
       </span>
     </div>
 
     <!-- Botón reiniciar -->
-    <button class="text-sm mt-2 underline  hover:text-gray-100" @click="store.resetOsaekomi(side)">
+    <button class="text-sm xl:text-lg mt-2 underline  hover:text-gray-100" @click="store.resetOsaekomi(side)">
       Reiniciar
     </button>
   </div>
