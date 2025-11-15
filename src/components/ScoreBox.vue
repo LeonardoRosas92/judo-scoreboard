@@ -18,7 +18,7 @@
           class="flex justify-center items-center w-full h-[clamp(10vh,12vh,14vh)] md:h-[clamp(16vh,15vh,30vh)] rounded-xl shadow-lg leading-none font-extrabold tracking-tight select-none"
           :class="side === 'white' ? 'bg-blue-700 text-white' : 'bg-white text-blue-700'">
           <span
-            class="text-[clamp(3rem,5vh,7rem)] md:text-[clamp(5rem,9vh,10rem)] lg:text-[clamp(7rem,9vh,10rem)] xl:text-[clamp(11rem,10vh,12rem)] leading-none">
+            class="text-[clamp(3rem,5vh,7rem)] md:text-[clamp(5rem,9vh,10rem)] lg:text-[clamp(4rem,9vh,9rem)] xl:text-[clamp(9rem,10vh,12rem)] leading-none">
             {{ store[side][type] }}
           </span>
         </div>
