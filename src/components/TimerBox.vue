@@ -54,8 +54,8 @@ const timerClass = computed(() => {
   if (store.winner) {
     // 🏆 Si hay ganador → color del competidor
     return store.winner === 'white'
-      ? 'bg-white text-blue-700'
-      : 'bg-blue-700 text-white'
+      ? 'bg-white text-black'
+      : 'bg-white text-blue-700'
   }
 
   if (store.isGolden) {

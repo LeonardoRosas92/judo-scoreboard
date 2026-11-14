@@ -216,7 +216,7 @@ export const useScoreboardStore = defineStore('scoreboard', {
       const os = this.osaekomi[side]
       const player = this[side]
 
-      if (os.interval) return // ya corriendo
+      if (os.interval) return
 
       os.running = true
       os.seconds = 0
@@ -227,35 +227,33 @@ export const useScoreboardStore = defineStore('scoreboard', {
       os.interval = setInterval(() => {
         os.seconds++
 
-        // 5s → Yuko
+        // 5 segundos → Yuko
         if (os.seconds === 5) {
           player.yuko++
           os.lastStep = 'yuko'
+        }
 
-          if (this.isGolden) {
+        // 10 segundos → Waza-ari o Ippon
+        if (os.seconds === 10) {
+          // Retirar el Yuko generado a los 5 segundos
+          if (os.lastStep === 'yuko' && player.yuko > 0) {
+            player.yuko--
+          }
+
+          if (alreadyHasWaza) {
+            // Ya tenía Waza-ari: el Osaekomi da Ippon
+            player.ippon++
+            os.lastStep = 'ippon'
+            this.derivedFromWaza[side] = true
             this.setWinner(side)
             this.stopOsaekomi(side)
             return
           }
-        }
 
-        // 10s → Waza-ari (quita yuko generado por este osaekomi)
-        if (os.seconds === 10) {
-          if (os.lastStep === 'yuko' && player.yuko > 0) player.yuko--
+          // No tenía Waza-ari: obtiene Waza-ari
           player.waza++
           os.lastStep = 'waza'
 
-          // 🔸 Si ya tenía un Waza-ari → ahora es Ippon
-          if (alreadyHasWaza) {
-            player.waza = 0
-            player.ippon++
-            os.lastStep = 'ippon'
-            this.derivedFromWaza[side] = true // 👈 marca origen
-            this.setWinner(side)
-            this.stopOsaekomi(side)
-            return
-          }
-
           if (this.isGolden) {
             this.setWinner(side)
             this.stopOsaekomi(side)
@@ -263,12 +261,16 @@ export const useScoreboardStore = defineStore('scoreboard', {
           }
         }
 
-        // 20s → Ippon (quita waza generado por este osaekomi)
+        // 20 segundos → Ippon
         if (os.seconds === 20) {
-          if (os.lastStep === 'waza' && player.waza > 0) player.waza--
+          // Retirar el Waza-ari generado por este Osaekomi
+          if (os.lastStep === 'waza' && player.waza > 0) {
+            player.waza--
+          }
+
           player.ippon++
           os.lastStep = 'ippon'
-          this.derivedFromWaza[side] = true // 👈 marca origen
+          this.derivedFromWaza[side] = true
           this.setWinner(side)
           this.stopOsaekomi(side)
           return
